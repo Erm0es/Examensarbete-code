@@ -1,5 +1,73 @@
-html{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+html {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Bitter", serif;
+}
+#hugger {
+  width: 100%;
+  height: 40rem;
+  background-image: url(/pictures/spice.jpg);
+  background-size: cover;
+}
+
+h1 {
+  color: rgb(4, 1, 0);
+  text-align: center;
+  font-size: 4rem;
+  text-shadow: 0 0 10px rgb(232, 227, 225);
+  margin-bottom: 0;
+  padding-top: 2rem;
+}
+
+p {
+  color: rgb(4, 1, 0);
+  text-align: center;
+  text-shadow: 0 0 10px rgb(232, 227, 225);
+  margin-top: 0;
+}
+
+#holder {
+  padding: 4rem;
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: flex-end;
+  gap: 20px;
+  margin-top: 0;
+}
+
+#random-menu-btn {
+  background-color: rgb(196, 61, 7);
+  width: 20rem;
+  height: 40px;
+  border: 1px solid rgb(0, 0, 0);
+  border-radius: 6px;
+  padding: 0;
+  margin-bottom: 5rem;
+  color: black;
+  font-size: 25px;
+}
+
+input {
+  background-color: rgb(237, 217, 192);
+  width: 15rem;
+  height: 40px;
+  border-radius: 6px;
+  border: 1px solid rgb(0, 0, 0);
+  padding: 0;
+  text-align: center;
+
+}
+
+#render-btn {
+  background-color: rgb(196, 61, 7);
+  width: 15rem;
+  height: 40px;
+  border: 1px solid rgb(0, 0, 0);
+  border-radius: 6px;
+  padding: 0;
+  color: rgb(237, 217, 192);
+  font-size: 20px;
 }

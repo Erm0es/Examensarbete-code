@@ -7,4 +7,3 @@ renderBtn.addEventListener("click", function(){
     console.log(inputValue)
 
 })
-
