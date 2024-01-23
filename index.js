@@ -3,7 +3,8 @@ const inputField = document.getElementById("input-field")
 
 
 renderBtn.addEventListener("click", function(){
-    console.log(inputField.value)
+    let inputValue = inputField.value
+    console.log(inputValue)
 
 })
 
