@@ -23,8 +23,16 @@ randomMenuBtn.addEventListener("click", function () {
 renderBtn.addEventListener("click", function () {
     let inputValue = inputField.value
     push(ownDishInDB, inputValue)
-
-    inputField.value = ""
-    ownDishUl.innerHTML += `<li>${inputValue}</li>`
+    clearInputField()
+    appendItemToOwnDishUl(inputValue)
 
 })
+
+function clearInputField(){
+    inputField.value = ""
+  
+}
+
+function appendItemToOwnDishUl(inputValue){
+    ownDishUl.innerHTML += `<li>${inputValue}</li>`
+}
