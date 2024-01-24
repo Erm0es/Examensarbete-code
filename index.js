@@ -27,12 +27,18 @@ renderBtn.addEventListener("click", function () {
 })
 
 onValue(ownDishInDB, function(snapshot){
-    let ownDishArr = Object.values(snapshot.val())
+    let ownDishArr = Object.entries(snapshot.val())
 
     clearOwnDishList()
 
     for(let i = 0; i < ownDishArr.length; i++){
-        appendItemToOwnDishUl(ownDishArr[i])
+        let currentItem = ownDishArr[i]
+
+        let currentItemID = currentItem[0]
+        let currentItemValue = currentItem[1]
+
+        console.log(currentItem)
+        appendItemToOwnDishUl(currentItem)
     }
 })
 
@@ -45,6 +51,12 @@ function clearInputField(){
   
 }
 
-function appendItemToOwnDishUl(inputValue){
-    ownDishUl.innerHTML += `<li>${inputValue}</li>`
+function appendItemToOwnDishUl(item){
+    let itemID = item[0]
+    let itemValue = item[1]
+
+    let newEl = document.createElement("li")
+    newEl.textContent = itemValue
+    ownDishUl.append(newEl)
+
 }
