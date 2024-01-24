@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"
-import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"
+import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"
 
 const appSettings = {
     databaseURL: "https://weeklymenu-9c4d9-default-rtdb.europe-west1.firebasedatabase.app/"
@@ -26,6 +26,11 @@ renderBtn.addEventListener("click", function () {
     clearInputField()
     appendItemToOwnDishUl(inputValue)
 
+})
+
+onValue(ownDishInDB, function(snapshot){
+    let ownDishArr = Object.values(snapshot.val())
+    console.log(ownDishArr)
 })
 
 function clearInputField(){
