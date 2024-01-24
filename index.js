@@ -24,15 +24,22 @@ renderBtn.addEventListener("click", function () {
     let inputValue = inputField.value
     push(ownDishInDB, inputValue)
     clearInputField()
-    appendItemToOwnDishUl(inputValue)
-
 })
 
 onValue(ownDishInDB, function(snapshot){
     let ownDishArr = Object.values(snapshot.val())
-    console.log(ownDishArr)
+
+    clearOwnDishList()
+
+    for(let i = 0; i < ownDishArr.length; i++){
+        appendItemToOwnDishUl(ownDishArr[i])
+    }
 })
 
+function clearOwnDishList(){
+    ownDishUl.innerHTML = ""
+
+}
 function clearInputField(){
     inputField.value = ""
   
