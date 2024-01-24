@@ -5,16 +5,15 @@ html {
   font-family: "Bitter", serif;
 }
 #hugger {
-  width: 100%;
-  height: 40rem;
+  min-width: 320px;
   background-image: url(/pictures/spice.jpg);
-  background-size: cover;
+  background-size:cover;
 }
 
 h1 {
   color: rgb(4, 1, 0);
   text-align: center;
-  font-size: 4rem;
+  font-size: 3rem;
   text-shadow: 0 0 10px rgb(232, 227, 225);
   margin-bottom: 0;
   padding-top: 2rem;
@@ -40,20 +39,19 @@ p {
 
 #random-menu-btn {
   background-color: rgb(196, 61, 7);
-  width: 20rem;
-  height: 40px;
+  width: 16rem;
+  height: 3rem;
   border: 1px solid rgb(0, 0, 0);
   border-radius: 6px;
   padding: 0;
-  
   color: black;
-  font-size: 25px;
+  font-size: 1.4rem;
 }
 
 input {
   background-color: rgb(237, 217, 192);
-  width: 15rem;
-  height: 40px;
+  width: 12rem;
+  height: 2rem;
   border-radius: 6px;
   border: 1px solid rgb(0, 0, 0);
   padding: 0;
@@ -64,11 +62,36 @@ input {
 
 #render-btn {
   background-color: rgb(196, 61, 7);
-  width: 15rem;
-  height: 40px;
+  width: 194px;
+  height: 34px;
   border: 1px solid rgb(0, 0, 0);
   border-radius: 6px;
   padding: 0;
   color: rgb(237, 217, 192);
   font-size: 20px;
+  text-shadow: 0 0 0;
+}
+
+ul{
+ padding: 0;
+ display: flex;
+ flex-direction: column;
+ gap: 10px;
+}
+
+li{
+  width: 19rem;
+  height: 100%;
+  list-style: none;
+  background-color:rgb(237, 217, 192, .5);
+  font-size: 20px;
+  border-radius: 6px;
+  text-align: center;
+  
+}
+
+footer{
+  display: flex;
+  justify-content: center;
+  margin-top: 400px
 }
