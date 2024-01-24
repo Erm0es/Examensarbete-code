@@ -7,21 +7,24 @@ const appSettings = {
 
 const app = initializeApp(appSettings)
 const database = getDatabase(app)
-const ownDishInDB = ref(database, "ownDish")
+const ownDishInDB = ref(database, "ownDishInDB")
 
 const randomMenuBtn = document.getElementById("random-menu-btn")
 const inputField = document.getElementById("input-field")
 const renderBtn = document.getElementById("render-btn")
+const ownDishUl = document.getElementById("own-dish")
 
 
-
-randomMenuBtn.addEventListener("click", function(){
+randomMenuBtn.addEventListener("click", function () {
     console.log("Random menu")
 })
 
 
-renderBtn.addEventListener("click", function(){
+renderBtn.addEventListener("click", function () {
     let inputValue = inputField.value
     push(ownDishInDB, inputValue)
+
+    inputField.value = ""
+    ownDishUl.innerHTML += `<li>${inputValue}</li>`
 
 })
