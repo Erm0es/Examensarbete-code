@@ -8,17 +8,36 @@ const appSettings = {
 const app = initializeApp(appSettings)
 const database = getDatabase(app)
 const ownDishInDB = ref(database, "ownDishInDB")
+const premadeDishInDB = ref(database, "premadeDishInDB")
+const sideDishInDB = ref(database, "sideDishInDB")
 
 const randomMenuBtn = document.getElementById("random-menu-btn")
 const inputField = document.getElementById("input-field")
 const renderBtn = document.getElementById("render-btn")
 const ownDishUl = document.getElementById("own-dish")
 
+push(premadeDishInDB)
+push(sideDishInDB)
+
+
 
 randomMenuBtn.addEventListener("click", function () {
-    console.log("Random menu")
-})
 
+    onValue(premadeDishInDB, function (snapshot) {
+        let premadeDishArr = Object.entries(snapshot.val())
+        
+        for (let i = 0; i < premadeDishArr.length; i++) {
+
+            let premadeDish = premadeDishArr[i]
+
+            let premadeDishID = premadeDish[0]
+            let premadeDishValue = premadeDish[1]
+
+            showPremadeDishes(premadeDishValue)
+        }
+    })
+
+})
 
 renderBtn.addEventListener("click", function () {
     let inputValue = inputField.value
@@ -26,7 +45,8 @@ renderBtn.addEventListener("click", function () {
     clearInputField()
 })
 
-onValue(ownDishInDB, function(snapshot) {
+
+onValue(ownDishInDB, function (snapshot) {
 
     if (snapshot.exists()) {
         let ownDishArr = Object.entries(snapshot.val())
@@ -43,7 +63,7 @@ onValue(ownDishInDB, function(snapshot) {
         }
     } else {
         ownDishUl.innerHTML = "Press the 'random button' to get a random menu!" + "<br />" + " -or write your own weekly menu."
-        ownDishUl.style.color= "#FDF0D5"
+        ownDishUl.style.color = "#FDF0D5"
     }
 })
 
@@ -54,6 +74,15 @@ function clearOwnDishList() {
 function clearInputField() {
     inputField.value = ""
 
+}
+
+function showPremadeDishes(premadeItem) {
+   
+    let premadeNewEl = document.createElement("li")
+    premadeNewEl.textContent = premadeItem
+    console.log(premadeItem)
+
+    ownDishUl.append(premadeNewEl)
 }
 
 function appendItemToOwnDishUl(item) {
