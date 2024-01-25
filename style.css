@@ -4,6 +4,7 @@ html {
   box-sizing: border-box;
   font-family: "Bitter", serif;
   text-align: center;
+  user-select: none;
 }
 #hugger {
   min-width: 320px;
