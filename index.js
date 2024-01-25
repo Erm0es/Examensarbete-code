@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"
-import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"
+import { getDatabase, ref, push, onValue, remove } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"
 
 const appSettings = {
     databaseURL: "https://weeklymenu-9c4d9-default-rtdb.europe-west1.firebasedatabase.app/"
@@ -26,37 +26,48 @@ renderBtn.addEventListener("click", function () {
     clearInputField()
 })
 
-onValue(ownDishInDB, function(snapshot){
-    let ownDishArr = Object.entries(snapshot.val())
+onValue(ownDishInDB, function(snapshot) {
 
-    clearOwnDishList()
+    if (snapshot.exists()) {
+        let ownDishArr = Object.entries(snapshot.val())
 
-    for(let i = 0; i < ownDishArr.length; i++){
-        let currentItem = ownDishArr[i]
+        clearOwnDishList()
 
-        let currentItemID = currentItem[0]
-        let currentItemValue = currentItem[1]
+        for (let i = 0; i < ownDishArr.length; i++) {
+            let currentItem = ownDishArr[i]
 
-        console.log(currentItem)
-        appendItemToOwnDishUl(currentItem)
+            let currentItemID = currentItem[0]
+            let currentItemValue = currentItem[1]
+
+            appendItemToOwnDishUl(currentItem)
+        }
+    } else {
+        ownDishUl.innerHTML = "Press the 'random button' to get a random menu!" + "<br />" + " -or write your own weekly menu."
+        ownDishUl.style.color= "#FDF0D5"
     }
 })
 
-function clearOwnDishList(){
+function clearOwnDishList() {
     ownDishUl.innerHTML = ""
 
 }
-function clearInputField(){
+function clearInputField() {
     inputField.value = ""
-  
+
 }
 
-function appendItemToOwnDishUl(item){
+function appendItemToOwnDishUl(item) {
     let itemID = item[0]
     let itemValue = item[1]
 
     let newEl = document.createElement("li")
     newEl.textContent = itemValue
+
+    newEl.addEventListener("click", function () {
+        let exaktLocationOfItemInDB = ref(database, `ownDishInDB/${itemID}`)
+        remove(exaktLocationOfItemInDB)
+    })
+
     ownDishUl.append(newEl)
 
 }
