@@ -57,7 +57,7 @@ p {
 
 input {
   background-color: rgb(237, 217, 192);
-  width: 12rem;
+  width: 13rem;
   height: 2rem;
   border-radius: 6px;
   border: 1px solid rgb(0, 0, 0);
@@ -68,7 +68,7 @@ input {
 
 #render-btn {
   background-color: rgb(196, 61, 7);
-  width: 194px;
+  width: 210px;
   height: 34px;
   border: 1px solid rgb(0, 0, 0);
   border-radius: 6px;

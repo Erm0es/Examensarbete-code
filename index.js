@@ -67,15 +67,18 @@ function clearInputField() {
 
 }
 
+
 function appendPremadeToUL(premadeItem) {
-    let premadeItemID = premadeItem[0]
+
     let premadeItemValue = premadeItem[1]
     let newPremadeEl = document.createElement("li")
+
+   
     newPremadeEl.textContent = premadeItemValue
+    console.log(Object.entries(premadeItem))
 
     newPremadeEl.addEventListener("click", function () {
-        let premadeLocationInDB = ref(database, `premadeDishInDB/${premadeItem}`)
-        premadeLocationInDB = newPremadeEl.remove()
+       newPremadeEl.remove()
 
     })
 
@@ -91,9 +94,6 @@ function appendItemToUlEl(ownItem) {
 
     newOwnEl.addEventListener("click", function () {
         let exaktLocationOfItemInDB = ref(database, `ownDishInDB/${ownItemID}`)
-
-
-
         remove(exaktLocationOfItemInDB)
     })
 
