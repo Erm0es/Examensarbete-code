@@ -71,33 +71,33 @@ function clearInputField() {
 function appendPremadeToUL(premadeItem) {
     let premadeItemID = premadeItem[0]
     let premadeItemValue = premadeItem[1]
-    let newPremadeItem = document.createElement("li")
-    newPremadeItem.textContent = premadeItemValue
+    let newPremadeEl = document.createElement("li")
+    newPremadeEl.textContent = premadeItemValue
 
-    newPremadeItem.addEventListener("click", function () {
+    newPremadeEl.addEventListener("click", function () {
         let premadeLocationInDB = ref(database, `premadeDishInDB/${premadeItem}`)
-        premadeLocationInDB = newPremadeItem.remove()
+        premadeLocationInDB = newPremadeEl.remove()
 
     })
 
-    premadeDishUL.append(newPremadeItem)
+    premadeDishUL.append(newPremadeEl)
 }
 
-function appendItemToUlEl(item) {
-    let itemID = item[0]
-    let itemValue = item[1]
-    console.log(item)
-    let newEl = document.createElement("li")
-    newEl.textContent = itemValue
+function appendItemToUlEl(ownItem) {
+    let ownItemID = ownItem[0]
+    let ownItemValue = ownItem[1]
+   
+    let newOwnEl = document.createElement("li")
+    newOwnEl.textContent = ownItemValue
 
-    newEl.addEventListener("click", function () {
-        let exaktLocationOfItemInDB = ref(database, `ownDishInDB/${itemID}`)
+    newOwnEl.addEventListener("click", function () {
+        let exaktLocationOfItemInDB = ref(database, `ownDishInDB/${ownItemID}`)
 
 
 
         remove(exaktLocationOfItemInDB)
     })
 
-    ownDishUl.append(newEl)
+    ownDishUl.append(newOwnEl)
 
 }

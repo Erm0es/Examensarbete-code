@@ -82,7 +82,7 @@ input {
   cursor: pointer;
 }
 #premade-dish-ul{
-  margin-bottom: 0;
+  margin-bottom: -10px;
   padding: 0;
   display: flex;
   flex-direction: column;
@@ -90,14 +90,12 @@ input {
 
 }
 #own-dish-ul{
-  margin-top: 0;
+  margin-top: -10px;
   padding: 0;
   display: flex;
   flex-direction: column;
   gap: 17px;
 }
-
-
 
 li {
   width: 19rem;
