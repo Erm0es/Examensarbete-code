@@ -30,30 +30,43 @@ renderBtn.addEventListener("click", function () {
 
 })
 
-function makeButtonWork() {
-        onValue(premadeDishInDB, function (snapshot) {
-            let premadeDishArr = Object.entries(snapshot.val())
-            for (let i = 0; i < premadeDishArr.length; i++) {
-                let premadeDish = premadeDishArr[i]
-                let premadeDishID = premadeDish[0]
-                let premadeDishValue = premadeDish[1]
-                appendPremadeToUL(premadeDish)
-               
-            }
-        })
+function makeButtonWork(randomMenu) {
+    onValue(premadeDishInDB, function (snapshot) {
+        let premadeDishArr = Object.entries(snapshot.val())
+        
+        console.log(randomMenu)
+        getRandomDishes(premadeDishArr)
+       
+        for (let i = 0; i <premadeDishArr; i++) {
+           
+            let premadeDish = premadeDishArr[i]
+            appendPremadeToUL(premadeDish)  
+           
+        }
+    })
 }
 
 onValue(ownDishInDB, function (snapshot) {
-        clearOwnDishList()
-        let ownDishArr = Object.entries(snapshot.val())
-        for (let i = 0; i < ownDishArr.length; i++) {
-            let currentItem = ownDishArr[i]
-            let currentItemID = currentItem[0]
-            let currentItemValue = currentItem[1]
-            appendItemToUlEl(currentItem)
-        }
+    clearOwnDishList()
+    let ownDishArr = Object.entries(snapshot.val())
+    for (let i = 0; i < ownDishArr.length; i++) {
+        let currentItem = ownDishArr[i]
+        let currentItemID = currentItem[0]
+        let currentItemValue = currentItem[1]
+        appendItemToUlEl(currentItem)
+    }
 })
 
+function getRandomDishes(premadeDishArr){
+    let numberOfRandom = 7;
+    for(let i = 0; i < numberOfRandom; i++){
+        let random = Math.floor(Math.random() * premadeDishArr.length)
+        let randomMenu = premadeDishArr[random]
+        console.log(randomMenu)
+        
+    }
+    return
+}
 function clearOwnDishList() {
     ownDishUl.innerHTML = ""
 
@@ -86,7 +99,7 @@ function appendPremadeToUL(premadeItem) {
 function appendItemToUlEl(ownItem) {
     let ownItemID = ownItem[0]
     let ownItemValue = ownItem[1]
-   
+
     let newOwnEl = document.createElement("li")
     newOwnEl.textContent = ownItemValue
 
