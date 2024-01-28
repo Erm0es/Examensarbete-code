@@ -9,33 +9,17 @@ const app = initializeApp(appSettings)
 const database = getDatabase(app)
 const ownDishInDB = ref(database, "ownDishInDB")
 const premadeDishInDB = ref(database, "premadeDishInDB")
-const sideDishInDB = ref(database, "sideDishInDB")
+
 
 const randomMenuBtn = document.getElementById("random-menu-btn")
 const inputField = document.getElementById("input-field")
 const renderBtn = document.getElementById("render-btn")
-const ownDishUl = document.getElementById("own-dish")
-
-push(premadeDishInDB)
-push(sideDishInDB)
-
+const ownDishUl = document.getElementById("own-dish-ul")
+const premadeDishUL = document.getElementById("premade-dish-ul")
 
 
 randomMenuBtn.addEventListener("click", function () {
-
-    onValue(premadeDishInDB, function (snapshot) {
-        let premadeDishArr = Object.entries(snapshot.val())
-        
-        for (let i = 0; i < premadeDishArr.length; i++) {
-
-            let premadeDish = premadeDishArr[i]
-
-            let premadeDishID = premadeDish[0]
-            let premadeDishValue = premadeDish[1]
-
-            showPremadeDishes(premadeDishValue)
-        }
-    })
+    makeButtonWork()
 
 })
 
@@ -43,57 +27,74 @@ renderBtn.addEventListener("click", function () {
     let inputValue = inputField.value
     push(ownDishInDB, inputValue)
     clearInputField()
+
 })
 
+function makeButtonWork() {
+        onValue(premadeDishInDB, function (snapshot) {
+            let premadeDishArr = Object.entries(snapshot.val())
+            for (let i = 0; i < premadeDishArr.length; i++) {
+                let premadeDish = premadeDishArr[i]
+                let premadeDishID = premadeDish[0]
+                let premadeDishValue = premadeDish[1]
+                appendPremadeToUL(premadeDish)
+               
+            }
+        })
+}
 
 onValue(ownDishInDB, function (snapshot) {
-
-    if (snapshot.exists()) {
-        let ownDishArr = Object.entries(snapshot.val())
-
         clearOwnDishList()
-
+        let ownDishArr = Object.entries(snapshot.val())
         for (let i = 0; i < ownDishArr.length; i++) {
             let currentItem = ownDishArr[i]
-
             let currentItemID = currentItem[0]
             let currentItemValue = currentItem[1]
-
-            appendItemToOwnDishUl(currentItem)
+            appendItemToUlEl(currentItem)
         }
-    } else {
-        ownDishUl.innerHTML = "Press the 'random button' to get a random menu!" + "<br />" + " -or write your own weekly menu."
-        ownDishUl.style.color = "#FDF0D5"
-    }
 })
 
 function clearOwnDishList() {
     ownDishUl.innerHTML = ""
 
 }
+
+function clearPremadeMenuList() {
+    premadeDishUL.innerHTML = ""
+}
+
 function clearInputField() {
     inputField.value = ""
 
 }
 
-function showPremadeDishes(premadeItem) {
-   
-    let premadeNewEl = document.createElement("li")
-    premadeNewEl.textContent = premadeItem
-    console.log(premadeItem)
+function appendPremadeToUL(premadeItem) {
+    let premadeItemID = premadeItem[0]
+    let premadeItemValue = premadeItem[1]
+    let newPremadeItem = document.createElement("li")
+    newPremadeItem.textContent = premadeItemValue
 
-    ownDishUl.append(premadeNewEl)
+    newPremadeItem.addEventListener("click", function () {
+        let premadeLocationInDB = ref(database, `premadeDishInDB/${premadeItem}`)
+        premadeLocationInDB = newPremadeItem.remove()
+
+    })
+
+    premadeDishUL.append(newPremadeItem)
 }
 
-function appendItemToOwnDishUl(item) {
+function appendItemToUlEl(item) {
     let itemID = item[0]
     let itemValue = item[1]
-
+    console.log(item)
     let newEl = document.createElement("li")
     newEl.textContent = itemValue
 
     newEl.addEventListener("click", function () {
         let exaktLocationOfItemInDB = ref(database, `ownDishInDB/${itemID}`)
+
+
+
         remove(exaktLocationOfItemInDB)
     })
 
