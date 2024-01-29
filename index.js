@@ -73,16 +73,21 @@ function appendPremadeToUL(premadeItem) {
     let premadeItemValue = premadeItem[1]
     let newPremadeEl = document.createElement("li")
 
+    for(let i = 0; i < 7; i++){
+        if(premadeDishUL.childElementCount <= 7){
+            newPremadeEl.textContent = premadeItemValue
+            premadeDishUL.append(newPremadeEl)
+        }else{
+         premadeDishUL.innerHTML = ""
+        }
+    }
    
-    newPremadeEl.textContent = premadeItemValue
-    console.log(Object.entries(premadeItem))
-
     newPremadeEl.addEventListener("click", function () {
        newPremadeEl.remove()
 
     })
 
-    premadeDishUL.append(newPremadeEl)
+   
 }
 
 function appendItemToUlEl(ownItem) {
