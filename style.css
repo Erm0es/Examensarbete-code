@@ -6,6 +6,12 @@ html {
   text-align: center;
   user-select: none;
 }
+
+header{
+  display: flex;
+  justify-content: center;
+}
+
 #hugger {
   min-width: 320px;
   background-image: url(/pictures/spice.jpg);
