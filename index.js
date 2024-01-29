@@ -30,7 +30,7 @@ renderBtn.addEventListener("click", function () {
 
 })
 
-function makeButtonWork(randomMenu) {
+function makeButtonWork() {
     onValue(premadeDishInDB, function (snapshot) {
         let premadeDishArr = Object.entries(snapshot.val())
 
@@ -39,14 +39,30 @@ function makeButtonWork(randomMenu) {
             let random = Math.floor(Math.random() * premadeDishArr.length)
             let randomMenu = premadeDishArr[random]
             let premadeDish = randomMenu
-            appendPremadeToUL(premadeDish)
+            appendPremadeToUL(premadeDish) 
         }
 
     })
 }
 
+function getNewRandomLi(newPremadeEl){
+    onValue(premadeDishInDB, function (snapshot) {
+        let newPremadeDishLi = Object.values(snapshot.val())
+        let numberOfRandom = 1;
+
+        for (let i = 0; i < numberOfRandom; i++) {
+            let random = Math.floor(Math.random() * newPremadeDishLi.length)
+            let randomMenu = newPremadeDishLi[random]
+            let premadeDish = randomMenu
+            newPremadeEl.innerHTML = premadeDish
+        }
+    })
+
+}
+
 onValue(ownDishInDB, function (snapshot) {
     clearOwnDishList()
+
     let ownDishArr = Object.entries(snapshot.val())
     for (let i = 0; i < ownDishArr.length; i++) {
         let currentItem = ownDishArr[i]
@@ -67,9 +83,7 @@ function clearInputField() {
 
 }
 
-
 function appendPremadeToUL(premadeItem) {
-
     let premadeItemValue = premadeItem[1]
     let newPremadeEl = document.createElement("li")
 
@@ -83,8 +97,8 @@ function appendPremadeToUL(premadeItem) {
     }
    
     newPremadeEl.addEventListener("click", function () {
-       newPremadeEl.remove()
-
+        getNewRandomLi(newPremadeEl)
+       
     })
 
    
