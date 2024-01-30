@@ -66,9 +66,8 @@ onValue(ownDishInDB, function (snapshot) {
     let ownDishArr = Object.entries(snapshot.val())
     for (let i = 0; i < ownDishArr.length; i++) {
         let currentItem = ownDishArr[i]
-        let currentItemID = currentItem[0]
-        let currentItemValue = currentItem[1]
-        appendItemToUlEl(currentItem)
+        appendItemToOwnDishUl(currentItem)
+
     }
 })
 
@@ -104,7 +103,7 @@ function appendPremadeToUL(premadeItem) {
    
 }
 
-function appendItemToUlEl(ownItem) {
+function appendItemToOwnDishUl(ownItem) {
     let ownItemID = ownItem[0]
     let ownItemValue = ownItem[1]
 
