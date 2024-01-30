@@ -23,22 +23,28 @@ const renderBtn = document.getElementById("render-btn")
 const ownDishUl = document.getElementById("own-dish-ul")
 
 const premadeDishUL = document.getElementById("premade-dish-ul")
+const showSavedMenu = document.getElementById("show-saved-menu")
 
 
+function clearSavedDishList(){
+    showSavedMenu.innerHTML = ""
+}
 
+function clearOwnDishList() {
+    ownDishUl.innerHTML = ""
 
+}
 
+function clearInputField() {
+    inputField.value = ""
 
-
-
-deleteRandomMenu.addEventListener("click", function () {
-
-})
+}
 
 randomMenuBtn.addEventListener("click", function () {
-    makeButtonWork()
+    makeRandomMenuButtonWork()
 
 })
+
 
 renderBtn.addEventListener("click", function () {
     let inputValue = inputField.value
@@ -46,7 +52,8 @@ renderBtn.addEventListener("click", function () {
     clearInputField()
 })
 
-function makeButtonWork() {
+
+function makeRandomMenuButtonWork() {
     onValue(premadeDishInDB, function (snapshot) {
         let premadeDishArr = Object.entries(snapshot.val())
 
@@ -56,18 +63,6 @@ function makeButtonWork() {
         }
 
     })
-}
-
-function getNewRandomLi(newPremadeEl) {
-    onValue(premadeDishInDB, function (snapshot) {
-        let newPremadeDishLi = Object.values(snapshot.val())
-        
-        for (let i = 0; i < 1; i++) {
-            let random = newPremadeDishLi[Math.floor(Math.random() * newPremadeDishLi.length)]
-            newPremadeEl.innerHTML = random
-        }
-    })
-
 }
 
 onValue(ownDishInDB, function (snapshot) {
@@ -80,23 +75,44 @@ onValue(ownDishInDB, function (snapshot) {
         }
 
     } else {
-        console.log("no items in ownDishDB yet")
+        console.log("no items in ownDishDB")
     }
 })
 
+//When li in premadeDish is pressed a new random should show
+function getNewRandomLi(newPremadeEl) {
+    onValue(premadeDishInDB, function (snapshot) {
+        let newPremadeDishArr = Object.values(snapshot.val())
 
-
-function clearOwnDishList() {
-    ownDishUl.innerHTML = ""
+        for (let i = 0; i < 1; i++) {
+            let random = newPremadeDishArr[Math.floor(Math.random() * newPremadeDishArr.length)]
+            newPremadeEl.innerHTML = random
+        }
+    })
 
 }
 
-function clearInputField() {
-    inputField.value = ""
+    onValue(savedRandomDishesInDB, function (snapshot) {
+        clearSavedDishList()
 
-}
+        if (snapshot.exists()) {
+            let savedRandomDishArr = Object.entries(snapshot.val())
+            console.log(savedRandomDishArr)
+            for (let i = 0; i < savedRandomDishArr.length; i++) {
+                let thisItem = savedRandomDishArr[i]
+                appendSavedRandomMenu(thisItem)
+            }
+
+        } else {
+            showSavedMenu.innerText = "There is no saved menu yet"
+            showSavedMenu.style.color = "white"
+        }
+    })
+
+
 
 function appendPremadeToUL(premadeItem) {
+
     let premadeItemValue = premadeItem[1]
     let newPremadeEl = document.createElement("li")
 
@@ -108,22 +124,17 @@ function appendPremadeToUL(premadeItem) {
             premadeDishUL.innerHTML = ""
         }
     }
-
-
+    
     newPremadeEl.addEventListener("click", function () {
         getNewRandomLi(newPremadeEl)
 
     })
 
     saveRandomMenu.addEventListener("click", function () {
-        console.log(premadeDishUL)
-        //push(savedRandomDishesInDB, premadeDishInDB.value)
+        push(savedRandomDishesInDB, premadeItemValue)
     })
     
 }
-
-
-
 
 function appendItemToOwnDishUl(ownItem) {
     let ownItemID = ownItem[0]
@@ -139,6 +150,21 @@ function appendItemToOwnDishUl(ownItem) {
 
     ownDishUl.append(newOwnEl)
 
+}
+
+function appendSavedRandomMenu(savedItem){
+    let savedItemValue = savedItem[1]
+
+    let newSavedEl = document.createElement("li")
+    newSavedEl.textContent = savedItemValue
+    
+
+    deleteRandomMenu.addEventListener("click", function () {
+        let exaktLocationOfSavedItemsInDB = ref(database, "savedRandomDishesInDB")
+        remove(exaktLocationOfSavedItemsInDB)
+        clearSavedDishList()
+    })
+    showSavedMenu.append(newSavedEl)
 }
 
 
