@@ -62,14 +62,18 @@ function getNewRandomLi(newPremadeEl){
 
 onValue(ownDishInDB, function (snapshot) {
     clearOwnDishList()
+    if(snapshot.exists()){
+        let ownDishArr = Object.entries(snapshot.val())
+        for (let i = 0; i < ownDishArr.length; i++) {
+            let currentItem = ownDishArr[i]
+            appendItemToOwnDishUl(currentItem)
+        }
 
-    let ownDishArr = Object.entries(snapshot.val())
-    for (let i = 0; i < ownDishArr.length; i++) {
-        let currentItem = ownDishArr[i]
-        appendItemToOwnDishUl(currentItem)
-
+    }else{
+        console.log("no items in ownDishDB yet")
     }
-})
+}) 
+
 
 
 function clearOwnDishList() {
@@ -111,8 +115,8 @@ function appendItemToOwnDishUl(ownItem) {
     newOwnEl.textContent = ownItemValue
 
     newOwnEl.addEventListener("click", function () {
-        let exaktLocationOfItemInDB = ref(database, `ownDishInDB/${ownItemID}`)
-        remove(exaktLocationOfItemInDB)
+        let exaktLocationOfOwnItemInDB = ref(database, `ownDishInDB/${ownItemID}`)
+        remove(exaktLocationOfOwnItemInDB)
     })
 
     ownDishUl.append(newOwnEl)
