@@ -26,12 +26,17 @@ const premadeDishUL = document.getElementById("premade-dish-ul")
 const showSavedMenu = document.getElementById("show-saved-menu")
 
 
-function clearSavedDishList(){
+function clearSavedDishList() {
     showSavedMenu.innerHTML = ""
 }
 
 function clearOwnDishList() {
     ownDishUl.innerHTML = ""
+
+}
+
+function clearPremadeDishList() {
+    premadeDishUL.innerHTML = ""
 
 }
 
@@ -79,6 +84,22 @@ onValue(ownDishInDB, function (snapshot) {
     }
 })
 
+onValue(savedRandomDishesInDB, function (snapshot) {
+    clearSavedDishList()
+    if (snapshot.exists()) {
+        let savedRandomDishArr = Object.entries(snapshot.val())
+        console.log(savedRandomDishArr)
+        for (let i = 0; i < savedRandomDishArr.length; i++) {
+            let thisItem = savedRandomDishArr[i]
+            appendSavedRandomMenu(thisItem)
+        }
+
+    } else {
+        showSavedMenu.innerText = "There is no saved menu yet"
+        showSavedMenu.style.color = "white"
+    }
+})
+
 //When li in premadeDish is pressed a new random should show
 function getNewRandomLi(newPremadeEl) {
     onValue(premadeDishInDB, function (snapshot) {
@@ -92,27 +113,7 @@ function getNewRandomLi(newPremadeEl) {
 
 }
 
-    onValue(savedRandomDishesInDB, function (snapshot) {
-        clearSavedDishList()
-
-        if (snapshot.exists()) {
-            let savedRandomDishArr = Object.entries(snapshot.val())
-            console.log(savedRandomDishArr)
-            for (let i = 0; i < savedRandomDishArr.length; i++) {
-                let thisItem = savedRandomDishArr[i]
-                appendSavedRandomMenu(thisItem)
-            }
-
-        } else {
-            showSavedMenu.innerText = "There is no saved menu yet"
-            showSavedMenu.style.color = "white"
-        }
-    })
-
-
-
 function appendPremadeToUL(premadeItem) {
-
     let premadeItemValue = premadeItem[1]
     let newPremadeEl = document.createElement("li")
 
@@ -124,7 +125,7 @@ function appendPremadeToUL(premadeItem) {
             premadeDishUL.innerHTML = ""
         }
     }
-    
+
     newPremadeEl.addEventListener("click", function () {
         getNewRandomLi(newPremadeEl)
 
@@ -132,8 +133,9 @@ function appendPremadeToUL(premadeItem) {
 
     saveRandomMenu.addEventListener("click", function () {
         push(savedRandomDishesInDB, premadeItemValue)
+        clearPremadeDishList()
     })
-    
+
 }
 
 function appendItemToOwnDishUl(ownItem) {
@@ -152,12 +154,12 @@ function appendItemToOwnDishUl(ownItem) {
 
 }
 
-function appendSavedRandomMenu(savedItem){
+function appendSavedRandomMenu(savedItem) {
     let savedItemValue = savedItem[1]
 
     let newSavedEl = document.createElement("li")
     newSavedEl.textContent = savedItemValue
-    
+
 
     deleteRandomMenu.addEventListener("click", function () {
         let exaktLocationOfSavedItemsInDB = ref(database, "savedRandomDishesInDB")

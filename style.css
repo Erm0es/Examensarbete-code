@@ -128,7 +128,7 @@ input {
   flex-direction: column;
   gap: 17px;
 }
-#own-dish-ul {
+#own-dish-ul, #show-saved-menu {
   margin-top: 10px;
   padding: 0;
   display: flex;
@@ -150,6 +150,7 @@ li:hover {
   background-color: rgba(203, 186, 165, 0.5);
   cursor: pointer;
 }
+
 
 footer {
   display: flex;
