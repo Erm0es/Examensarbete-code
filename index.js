@@ -114,7 +114,6 @@ function getNewRandomLi(newPremadeEl) {
         }
 
     })
-
 }
 
 function appendPremadeToUL(premadeItem) {
