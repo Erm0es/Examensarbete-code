@@ -8,8 +8,7 @@ html {
 
 body{
   background-image: url(/pictures/spice.jpg);
- background-size: cover;
- 
+  background-size: cover;
   margin: 0;
   padding: 0;
   width: 100vw;
@@ -103,6 +102,7 @@ p {
 }
 
 #delete-random-menu {
+  visibility: hidden;
   background-color: rgb(131, 80, 60);
   box-shadow:0 0 15px rgb(237, 217, 192);
   width: 5rem;
