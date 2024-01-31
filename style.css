@@ -106,7 +106,7 @@ input {
   font-size: 20px;
 }
 
-#render-btn {
+#save-own-dish-btn {
   background-color: rgb(196, 61, 7);
   width: 210px;
   height: 34px;
@@ -117,7 +117,7 @@ input {
   font-size: 20px;
   text-shadow: 0 0 0;
 }
-#render-btn:hover {
+#save-own-dish-btn:hover {
   background-color: rgb(161, 49, 5);
   cursor: pointer;
 }

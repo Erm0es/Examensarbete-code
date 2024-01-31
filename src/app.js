@@ -20,7 +20,7 @@ const deleteRandomMenu = document.getElementById("delete-random-menu")
 const randomMenuBtn = document.getElementById("random-menu-btn")
 
 const inputField = document.getElementById("input-field")
-const renderBtn = document.getElementById("render-btn")
+const saveOwnDishBtn = document.getElementById("save-own-dish-btn")
 const ownDishUl = document.getElementById("own-dish-ul")
 
 const premadeDishUL = document.getElementById("premade-dish-ul")
@@ -52,7 +52,7 @@ randomMenuBtn.addEventListener("click", function () {
 })
 
 
-renderBtn.addEventListener("click", function () {
+saveOwnDishBtn.addEventListener("click", function () {
     let inputValue = inputField.value
     push(ownDishInDB, inputValue)
     clearInputField()
