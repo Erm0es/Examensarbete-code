@@ -7,8 +7,13 @@ html {
 }
 
 body{
+  background-image: url(/pictures/spice.jpg);
+ background-size: cover;
+ 
   margin: 0;
   padding: 0;
+  width: 100vw;
+  height: 100vh;
 }
 
 header{
@@ -38,8 +43,8 @@ p {
 
 #hugger {
   min-width: 320px;
-  background-image: url(/pictures/spice.jpg);
-  background-size: cover;
+  
+  
 }
 
 #top{
@@ -149,6 +154,7 @@ input {
   border: 1px solid rgb(0, 0, 0);
   border-radius: 6px;
   padding: 0;
+  margin-bottom: 30px;
   color: rgb(237, 217, 192);
   font-size: 20px;
   box-shadow:0 0 15px rgb(237, 217, 192);

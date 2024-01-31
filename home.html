@@ -19,38 +19,36 @@
 </head>
 
 <body>
-    <div id="hugger">
-        <header>
-            <h1>Weekly Menu</h1>
-            <p>-helps you decide what to eat.</p>
-        </header>
-            <div id="top">
-                <button id="random-menu-btn">Random menu</button>
-                <div id="button-div">
-                    <button id="save-random-menu">Save</button>
-                    <button id="delete-random-menu">Delete</button>
-                </div>
-                <ul id="premade-dish-ul">
-                </ul>
-            </div>
-            <div id="middle">
-                <h2>Write your own menu!</h1>
-                <input type="text" id="input-field" placeholder="...">
-                <button id="save-own-dish-btn">Add</button>
-                <ul id="own-dish-ul">
-            </div>
-            <div id="bottom">
-                <h2 id="saved">~This weeks menu~</h2>
-            </ul>
-            <ul id="show-saved-menu"></ul>
-            </div>
+    <header>
+        <h1>Weekly Menu</h1>
+        <p>-helps you decide what to eat.</p>
+    </header>
+    <div id="top">
+        <button id="random-menu-btn">Random menu</button>
+        <div id="button-div">
+            <button id="save-random-menu">Save</button>
+            <button id="delete-random-menu">Delete</button>
+        </div>
+        <ul id="premade-dish-ul">
+        </ul>
+    </div>
+    <div id="middle">
+        <h2>Write your own menu!</h2>
+        <ul id="own-dish-ul"></ul>
 
-        <footer>
-            <p id="footer-text"></p>
-        </footer>
+        <input type="text" id="input-field" placeholder="...">
+        <button id="save-own-dish-btn">Add</button>
     </div>
 
+    <div id="bottom">
+        <h2 id="saved">~This weeks menu~</h2>
+        </ul>
+        <ul id="show-saved-menu"></ul>
+    </div>
 
+    <footer>
+        <p id="footer-text"></p>
+    </footer>
 
 </body>
 <script src="index.js" type="module"></script>

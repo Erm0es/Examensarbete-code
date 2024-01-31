@@ -61,14 +61,14 @@ saveOwnDishBtn.addEventListener("click", function () {
 
 function makeRandomMenuButtonWork() {
     onValue(premadeDishInDB, function (snapshot) {
-        if(snapshot.exists()){
+        if (snapshot.exists()) {
             let premadeDishArr = Object.entries(snapshot.val())
             for (let i = 0; i < 7; i++) {
                 let random = premadeDishArr[Math.floor(Math.random() * premadeDishArr.length)]
                 appendPremadeToUL(random)
             }
-            
-        }else {
+
+        } else {
             console.error("no items in db")
         }
     })
