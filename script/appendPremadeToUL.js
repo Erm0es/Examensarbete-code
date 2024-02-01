@@ -15,7 +15,7 @@ export function makeRandomMenuButtonWork() {
         clearPremadeDishList()
         if (snapshot.exists()) {
             let premadeDishArr = Object.entries(snapshot.val())
-            for (let i = 0; i < 8; i++) {
+            for (let i = 0; i < 7; i++) {
                 let random = premadeDishArr[Math.floor(Math.random() * premadeDishArr.length)]
                 appendPremadeToUL(random)
             }

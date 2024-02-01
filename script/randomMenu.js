@@ -31,8 +31,7 @@ onValue(savedRandomDishesInDB, function (snapshot) {
         }
 
     } else {
-        showSavedMenu.innerText = "There is no saved menu yet"
-        showSavedMenu.style.color = "white"
+        showSavedMenu.innerText = "Din sparade meny kommer synas här"
     }
 })
 

@@ -20,7 +20,7 @@ onValue(ownDishInDB, function (snapshot) {
         }
 
     } else {
-        ownDishUl.innerHTML = "Write some dishes!"
+        ownDishUl.innerHTML = ""
     }
 })
 
