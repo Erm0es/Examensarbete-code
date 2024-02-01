@@ -4,7 +4,7 @@ import { savedRandomDishesInDB } from "./randomMenu.js"
 
 
 const premadeDishUL = document.getElementById("premade-dish-ul")
-const saveRandomMenu = document.getElementById("save-random-menu")
+const saveRandomMenuBtn = document.getElementById("save-random-menu-btn")
 
 export function clearPremadeDishList() {
     premadeDishUL.innerHTML = ""
@@ -48,7 +48,7 @@ export function appendPremadeToUL(premadeItem) {
         getNewRandomLi(newPremadeEl)
     })
 
-    saveRandomMenu.addEventListener("click", function () {
+    saveRandomMenuBtn.addEventListener("click", function () {
         clearPremadeDishList()
         push(savedRandomDishesInDB, premadeItemValue)
         window.location = window.location;

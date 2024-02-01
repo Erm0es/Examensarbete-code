@@ -4,7 +4,7 @@ import { database } from "./db.js"
 export const premadeDishInDB = ref(database, "premadeDishInDB")
 export const savedRandomDishesInDB = ref(database, "savedRandomDishesInDB")
 
-export const deleteRandomMenu = document.getElementById("delete-random-menu")
+export const deleteRandomMenuBtn = document.getElementById("delete-random-menu-btn")
 export const showSavedMenu = document.getElementById("show-saved-menu")
 
 export function appendSavedRandomMenu(savedItem) {
@@ -13,7 +13,7 @@ export function appendSavedRandomMenu(savedItem) {
     let newSavedEl = document.createElement("li")
     newSavedEl.textContent = savedItemValue
 
-    deleteRandomMenu.addEventListener("click", function () {
+    deleteRandomMenuBtn.addEventListener("click", function () {
         let exaktLocationOfSavedItemsInDB = ref(database, "savedRandomDishesInDB")
         remove(exaktLocationOfSavedItemsInDB)
     })

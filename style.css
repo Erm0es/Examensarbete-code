@@ -81,7 +81,7 @@ p {
   text-align: center;
 }
 
-#save-random-menu {
+#save-random-menu-btn {
   margin:5px;
   background-color: rgb(237, 217, 192);
   box-shadow:0 0 15px rgb(237, 217, 192);
@@ -95,13 +95,13 @@ p {
   font-weight:bold;
 
 }
-#save-random-menu:hover{
+#save-random-menu-btn:hover{
   cursor: pointer;
   background-color:rgb(203, 187, 167) ;
 
 }
 
-#delete-random-menu {
+#delete-random-menu-btn {
   background-color: rgb(131, 80, 60);
   box-shadow:0 0 15px rgb(237, 217, 192);
   width: 5rem;
@@ -113,7 +113,7 @@ p {
   font-size: 1rem;
   font-weight:bold;
 }
-#delete-random-menu:hover{
+#delete-random-menu-btn:hover{
   cursor: pointer;
   background-color: rgb(113, 70, 52);
 }
