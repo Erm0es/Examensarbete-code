@@ -3,8 +3,6 @@ import { database } from "./db.js"
 import { savedRandomDishesInDB } from "./db.js"
 
 
-
-
 export const deleteRandomMenuBtn = document.getElementById("delete-random-menu-btn")
 export const showSavedMenu = document.getElementById("show-saved-menu")
 

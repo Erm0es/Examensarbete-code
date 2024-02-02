@@ -1,6 +1,7 @@
 import { push } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"
-import { ownDishInDB, ownDishUl } from "./script/appendItemToOwnDishUL.js"
+import { ownDishUl } from "./script/appendItemToOwnDishUL.js"
 import {makeRandomMenuButtonWork} from "./script/appendPremadeToUL.js"
+import { ownDishInDB } from "./script/db.js"
 
 export const inputField = document.getElementById("input-field")
 export const saveOwnDishBtn = document.getElementById("save-own-dish-btn")
@@ -8,13 +9,14 @@ export const randomMenuBtn = document.getElementById("random-menu-btn")
 
 
 randomMenuBtn.addEventListener("click", function () {
-    makeRandomMenuButtonWork()
+    makeRandomMenuButtonWork() 
+    //randomMenuBtn.style.display = "none"
 })
 
 saveOwnDishBtn.addEventListener("click", function () {
     let inputValue = inputField.value
     if (inputValue === "") {
-        ownDishUl.innerHTML = "Write some dishes!"
+        ownDishUl.innerHTML = ""
     } else {
         push(ownDishInDB, inputValue)
     }

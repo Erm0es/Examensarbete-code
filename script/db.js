@@ -11,4 +11,5 @@ export const database = getDatabase(initApp)
 
 
 export const premadeDishInDB = ref(database, "premadeDishInDB")
+export const ownDishInDB = ref(database, "ownDishInDB")
 export const savedRandomDishesInDB = ref(database, "savedRandomDishesInDB")
