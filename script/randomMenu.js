@@ -1,8 +1,9 @@
 import {ref, onValue, remove} from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"
 import { database } from "./db.js"
+import { savedRandomDishesInDB } from "./db.js"
 
-export const premadeDishInDB = ref(database, "premadeDishInDB")
-export const savedRandomDishesInDB = ref(database, "savedRandomDishesInDB")
+
+
 
 export const deleteRandomMenuBtn = document.getElementById("delete-random-menu-btn")
 export const showSavedMenu = document.getElementById("show-saved-menu")
