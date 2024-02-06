@@ -7,10 +7,10 @@ export const inputField = document.getElementById("input-field")
 export const saveOwnDishBtn = document.getElementById("save-own-dish-btn")
 export const randomMenuBtn = document.getElementById("random-menu-btn")
 
-
 randomMenuBtn.addEventListener("click", function () {
-    makeRandomMenuButtonWork() 
-    //randomMenuBtn.style.display = "none"
+        makeRandomMenuButtonWork() 
+        //randomMenuBtn.innerText = "↺"
+        //randomMenuBtn.style.width =  "5rem"
 })
 
 saveOwnDishBtn.addEventListener("click", function () {
@@ -26,5 +26,4 @@ saveOwnDishBtn.addEventListener("click", function () {
 
 function clearInputField() {
     inputField.value = ""
-
 }
